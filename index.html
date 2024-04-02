@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <header>
+        <img src="img\vk.svg" id="icon">
+    </header>
+    <div id="content">
+        <div id="rules">
+            <h1>Привет!</h1>
+            <h2>Разгадай ребусы и погрузись в мир IT!</h2>
+        </div>
+        <div id="all_rebus">
+            <div class="rebus">
+                <p>Ребус №1</p>
+                <img class="rebus_img" src="img/1.jpg" onclick="alert('Это разделение целостной системы на части, каждая из которых может работать автономно.')">
+                <input id="t_1" type="text" data-right="анбандлинг">
+            </div>
+            <div class="rebus">
+                <p>Ребус №2</p>
+                <img class="rebus_img" src="img\2.jpg" onclick="alert('Это устаревший код, который обычно достается в наследство от предыдущих разработчиков или же писался и не поддерживался очень давно.')">
+                <input id="t_2" type="text" data-right="легаси">
+            </div>
+            <div class="rebus">
+               <p>Ребус №3</p>
+                <img class="rebus_img" src="img\3.jpg" onclick="alert('Это пакет изменений, хранящий информацию с добавленными, отредактированными или удаленными файлами кода.')">
+                <input id="t_3" type="text" data-right="коммит">
+            </div>
+            <div class="rebus">
+                <p>Ребус №4</p>
+                <img class="rebus_img" src="img\4.png" onclick="alert('Это устройства, приспособления, те или иные технические средства, которые используются в различных областях науки и повседневной жизни.')">
+                <input id="t_4" data-right="девайс">
+            </div>
+            <div class="rebus">
+                <p>Ребус №5</p>
+                <img class="rebus_img" src="img\5.jpg" onclick="alert('Это единица хранения и обработки цифровой информации.')">
+                <input id="t_5" data-right="бит">
+            </div>
+        </div>
+        <div id="result">
+            <button id="button">РЕЗУЛЬТАТ</button>
+    
+            <div id="newelem"></div>
+            <div class="information_after_answers "></div>
+        </div>
+    </div>
+    <script>
+        let inputs = document.querySelectorAll('#all_rebus input');
+        let count_right = 0;
+        for (let input of inputs) {
+            input.addEventListener('input', function() {
+                this.classList.remove('correct');
+                this.classList.remove('incorrect');
+                if (this.value == this.dataset.right) {
+                    this.classList.add('correct');
+                } else {
+                    this.classList.add('incorrect');
+                }
+            });
+        }
+        button.onclick = function() {
+            count_right = 0;
+            for (let input of inputs) {
+                if (input.value == input.dataset.right) {
+                    count_right++;
+                }
+            };
+            newelem.innerHTML = "Вы ответили на" + " " + count_right + " " + "из 5 вопросов!";
+        }
+    </script>
+</body>
+
+</html>
